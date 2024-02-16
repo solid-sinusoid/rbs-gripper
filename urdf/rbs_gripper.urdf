@@ -1,0 +1,221 @@
+ <?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="rbs-gripper-description">
+  <link
+    name="Grip_Base">
+    <inertial>
+      <origin
+        xyz="0.000364704367134063 0.0336387482840125 0.0593891203954369"
+        rpy="0 0 0" />
+      <mass
+        value="1.13983632906086" />
+      <inertia
+        ixx="0.00107738806534129"
+        ixy="-1.09841172461737E-05"
+        ixz="2.62750043451545E-06"
+        iyy="0.000717388573992299"
+        iyz="-2.95426438182787E-05"
+        izz="0.00115777179755934" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/visual/Grip_Base.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/collision/Grip_Base.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Grip_Rotator">
+    <inertial>
+      <origin
+        xyz="6.79110135283868E-11 -3.80956832067611E-10 0.00775394473595793"
+        rpy="0 0 0" />
+      <mass
+        value="0.161003401535982" />
+      <inertia
+        ixx="0.00011089089949771"
+        ixy="5.01335040610636E-06"
+        ixz="1.74608448389267E-14"
+        iyy="0.000105515893695012"
+        iyz="-2.03282362854432E-14"
+        izz="0.000206912001661452" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/visual/Grip_Rotator.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/collision/Grip_Rotator.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="grip_rot"
+    type="revolute">
+    <origin
+      xyz="0 0 0.10861"
+      rpy="0 0 0" />
+    <parent
+      link="Grip_Base" />
+    <child
+      link="Grip_Rotator" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="0"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Gripper_1">
+    <inertial>
+      <origin
+        xyz="0.00399878118534129 0.0187296413885176 -0.0777776233934166"
+        rpy="0 0 0" />
+      <mass
+        value="0.0601996441483964" />
+      <inertia
+        ixx="4.18533281165612E-05"
+        ixy="-7.11657995951147E-06"
+        ixz="1.81029223490065E-05"
+        iyy="7.89886367868258E-05"
+        iyz="1.20542845942065E-05"
+        izz="5.16740841307935E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/visual/Gripper_1.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/collision/Gripper_1.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="open_1"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.1071"
+      rpy="0 0 1.5708" />
+    <parent
+      link="Grip_Rotator" />
+    <child
+      link="Gripper_1" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.064"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="Gripper_2">
+    <inertial>
+      <origin
+        xyz="0.0039988 -0.077778 -0.01873"
+        rpy="0 0 0" />
+      <mass
+        value="0.0602" />
+      <inertia
+        ixx="4.1853E-05"
+        ixy="1.8103E-05"
+        ixz="7.1166E-06"
+        iyy="5.1674E-05"
+        iyz="-1.2054E-05"
+        izz="7.8989E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/visual/Gripper_2.dae" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://rbs-gripper-description/meshes/collision/Gripper_2.stl" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="open_2"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.1071"
+      rpy="1.5708 0 -1.5708" />
+    <parent
+      link="Grip_Rotator" />
+    <child
+      link="Gripper_2" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="0"
+      upper="0.064"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

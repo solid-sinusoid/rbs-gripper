@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rbs-gripper">
+  <xacro:include filename="$(find rbs_gripper)/urdf/rbs_gripper_macro.xacro"/>
+
+  <xacro:arg name="hardware" default="gazebo"/>  
+  <link name="world"/>
+  
+  <xacro:rbs_gripper prefix="" gripper_name="rbs-gripper" parent="world" hardware="$(arg hardware)">
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> 
+  </xacro:rbs_gripper>
+</robot>

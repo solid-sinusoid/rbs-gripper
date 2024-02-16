@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="rbs_gripper_hardware"
+    params="prefix gripper_name hardware">
+
+    <ros2_control name="${prefix}${gripper_name}_${hardware}" type="system">
+      <!-- Plugins -->
+      <hardware>
+        <xacro:if value="${hardware=='isaac'}">
+          <plugin>isaac_ros2_control/IsaacSystem</plugin>
+          <param name="joint_commands_topic">/isaac_joint_commands</param>
+          <param name="joint_states_topic">/isaac_joint_states</param>
+        </xacro:if>
+        <xacro:if value="${hardware=='gazebo'}">
+          <plugin>ign_ros2_control/IgnitionSystem</plugin>
+        </xacro:if>
+        <xacro:if value="${hardware=='fake'}">
+          <plugin>mock_components/GenericSystem</plugin>
+        </xacro:if>
+      </hardware>
+      <!-- Joint interfaces -->
+      <joint name="${prefix}${gripper_name}_rot_base_joint">
+        <xacro:if value="${hardware=='gazebo'}">
+          <state_interface name="position">
+            <param name="initial_value">0.000</param>
+          </state_interface>
+        </xacro:if>
+        <xacro:unless value="${hardware=='gazebo'}">
+          <param name="initial_value">0.000</param>
+          <state_interface name="position" />
+        </xacro:unless>
+
+        <command_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      <joint name="${prefix}${gripper_name}_r_finger_joint">
+        <!-- With Gazebo, we have mimic joints, so we only need this command interface
+                activated -->
+        <xacro:if value="${hardware=='gazebo'}">
+          <state_interface name="position">
+            <param name="initial_value">0.004</param>
+          </state_interface>
+        </xacro:if>
+        <xacro:unless value="${hardware=='gazebo'}">
+          <param name="initial_position">0.000</param>
+          <state_interface name="position" />
+        </xacro:unless>
+
+        <command_interface name="position" />
+        <state_interface name="velocity" />
+      </joint>
+      <joint name="${prefix}${gripper_name}_l_finger_joint">
+        <param name="mimic">${prefix}${gripper_name}_r_finger_joint</param>
+        <param name="multiplier">1</param>
+        <xacro:unless value="${hardware == 'gazebo'}">
+          <command_interface name="position" />
+          <state_interface name="position" />
+          <state_interface name="velocity" />
+        </xacro:unless>
+      </joint>
+
+
+    </ros2_control>
+  </xacro:macro>
+</robot>
