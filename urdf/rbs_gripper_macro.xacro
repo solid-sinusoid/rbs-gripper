@@ -62,7 +62,8 @@
       <parent link="${prefix}${gripper_name}_gripper_base_link" />
       <child link="${prefix}${gripper_name}_rot_base_link" />
       <axis xyz="0 0 1" />
-      <limit lower="0" upper="0" effort="0" velocity="0" />
+      <limit lower="-3.14159" upper="3.14159" effort="78" velocity="0.52" />
+    <dynamics damping="0" friction="0"/>
     </joint>
     <link name="${prefix}${gripper_name}_l_finger_link">
       <inertial>
@@ -92,7 +93,7 @@
       <parent link="${prefix}${gripper_name}_rot_base_link" />
       <child link="${prefix}${gripper_name}_l_finger_link" />
       <axis xyz="-1 0 0" />
-      <limit lower="0" upper="0.064" effort="0" velocity="0" />
+      <limit lower="0" upper="0.064" effort="10" velocity="0.53" />
 			<mimic joint="${prefix}${gripper_name}_r_finger_joint" multiplier="1" />
     </joint>
     <link name="${prefix}${gripper_name}_r_finger_link">
@@ -124,12 +125,12 @@
       <parent link="${prefix}${gripper_name}_rot_base_link" />
       <child link="${prefix}${gripper_name}_r_finger_link" />
       <axis xyz="-1 0 0" />
-      <limit lower="0" upper="0.064" effort="0" velocity="0" />
+      <limit lower="0" upper="0.064" effort="10" velocity="0.53" />
     </joint>
     <link name="${prefix}gripper_grasp_point" />
     <joint name="${prefix}${gripper_name}_gripper_tool0_joint" type="fixed">
-      <origin xyz="0 0 0.2" rpy="0 0 0" />
-      <parent link="${prefix}${parent}" />
+      <origin xyz="0 0 0.09139" rpy="0 0 0" />
+      <parent link="${prefix}${gripper_name}_rot_base_link" />
       <child link="${prefix}gripper_grasp_point" />
     </joint>
   </xacro:macro>
