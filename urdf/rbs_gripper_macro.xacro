@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:include filename="$(find rbs_gripper)/urdf/rbs_gripper_ros2_control.xacro" />
-  <xacro:macro name="rbs_gripper" params="prefix gripper_name *origin parent hardware">
+  <xacro:macro name="rbs_gripper" params="tf_prefix gripper_name *origin parent hardware">
 
-    <xacro:rbs_gripper_hardware prefix="${prefix}" gripper_name="${gripper_name}"
+    <xacro:rbs_gripper_hardware tf_prefix="${tf_prefix}" gripper_name="${gripper_name}"
       hardware="${hardware}" />
 
-    <joint name="${prefix}${gripper_name}_gripper_base_joint" type="fixed">
+    <joint name="${tf_prefix}${gripper_name}_gripper_base_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 0" />
       <parent link="${parent}" />
-      <child link="${prefix}${gripper_name}_gripper_base_link" />
+      <child link="${tf_prefix}${gripper_name}_gripper_base_link" />
     </joint>
-    <link name="${prefix}${gripper_name}_gripper_base_link">
+    <link name="${tf_prefix}${gripper_name}_gripper_base_link">
       <inertial>
         <origin xyz="0.000364704367134063 0.0336387482840125 0.0593891203954369" rpy="0 0 0" />
         <mass value="1.13983632906086" />
@@ -23,7 +23,7 @@
         <geometry>
           <mesh filename="file://$(find rbs_gripper)/meshes/visual/Grip_Base.dae" />
         </geometry>
-        <material name="${prefix}${gripper_name}_material">
+        <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
         </material>
       </visual>
@@ -34,7 +34,7 @@
         </geometry>
       </collision>
     </link>
-    <link name="${prefix}${gripper_name}_rot_base_link">
+    <link name="${tf_prefix}${gripper_name}_rot_base_link">
       <inertial>
         <origin xyz="6.79110135283868E-11 -3.80956832067611E-10 0.00775394473595793" rpy="0 0 0" />
         <mass value="0.161003401535982" />
@@ -46,7 +46,7 @@
         <geometry>
           <mesh filename="file://$(find rbs_gripper)/meshes/visual/Grip_Rotator.dae" />
         </geometry>
-        <material name="${prefix}${gripper_name}_material">
+        <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
         </material>
       </visual>
@@ -57,15 +57,15 @@
         </geometry>
       </collision>
     </link>
-    <joint name="${prefix}${gripper_name}_rot_base_joint" type="revolute">
+    <joint name="${tf_prefix}${gripper_name}_rot_base_joint" type="revolute">
       <origin xyz="0 0 0.10861" rpy="0 0 0" />
-      <parent link="${prefix}${gripper_name}_gripper_base_link" />
-      <child link="${prefix}${gripper_name}_rot_base_link" />
+      <parent link="${tf_prefix}${gripper_name}_gripper_base_link" />
+      <child link="${tf_prefix}${gripper_name}_rot_base_link" />
       <axis xyz="0 0 1" />
       <limit lower="-3.14159" upper="3.14159" effort="78" velocity="0.52" />
     <dynamics damping="0" friction="0"/>
     </joint>
-    <link name="${prefix}${gripper_name}_l_finger_link">
+    <link name="${tf_prefix}${gripper_name}_l_finger_link">
       <inertial>
         <origin xyz="0.00399878118534129 0.0187296413885176 -0.0777776233934166" rpy="0 0 0" />
         <mass value="0.0601996441483964" />
@@ -77,7 +77,7 @@
         <geometry>
           <mesh filename="file://$(find rbs_gripper)/meshes/visual/Gripper_1.dae" />
         </geometry>
-        <material name="${prefix}${gripper_name}_material">
+        <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.752941176470588 0 0 1" />
         </material>
       </visual>
@@ -88,15 +88,15 @@
         </geometry>
       </collision>
     </link>
-    <joint name="${prefix}${gripper_name}_l_finger_joint" type="prismatic">
+    <joint name="${tf_prefix}${gripper_name}_l_finger_joint" type="prismatic">
       <origin xyz="0 0 0.1071" rpy="0 0 1.5708" />
-      <parent link="${prefix}${gripper_name}_rot_base_link" />
-      <child link="${prefix}${gripper_name}_l_finger_link" />
+      <parent link="${tf_prefix}${gripper_name}_rot_base_link" />
+      <child link="${tf_prefix}${gripper_name}_l_finger_link" />
       <axis xyz="-1 0 0" />
       <limit lower="0" upper="0.064" effort="10" velocity="0.53" />
-			<mimic joint="${prefix}${gripper_name}_r_finger_joint" multiplier="1" />
+			<mimic joint="${tf_prefix}${gripper_name}_r_finger_joint" multiplier="1" />
     </joint>
-    <link name="${prefix}${gripper_name}_r_finger_link">
+    <link name="${tf_prefix}${gripper_name}_r_finger_link">
       <inertial>
         <origin xyz="0.0039988 -0.077778 -0.01873" rpy="0 0 0" />
         <mass value="0.0602" />
@@ -109,7 +109,7 @@
         <geometry>
           <mesh filename="file://$(find rbs_gripper)/meshes/visual/Gripper_2.dae" />
         </geometry>
-        <material name="${prefix}${gripper_name}_material">
+        <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.75294 0 0 1" />
         </material>
       </visual>
@@ -120,18 +120,18 @@
         </geometry>
       </collision>
     </link>
-    <joint name="${prefix}${gripper_name}_r_finger_joint" type="prismatic">
+    <joint name="${tf_prefix}${gripper_name}_r_finger_joint" type="prismatic">
       <origin xyz="0 0 0.1071" rpy="1.5708 0 -1.5708" />
-      <parent link="${prefix}${gripper_name}_rot_base_link" />
-      <child link="${prefix}${gripper_name}_r_finger_link" />
+      <parent link="${tf_prefix}${gripper_name}_rot_base_link" />
+      <child link="${tf_prefix}${gripper_name}_r_finger_link" />
       <axis xyz="-1 0 0" />
       <limit lower="0" upper="0.064" effort="10" velocity="0.53" />
     </joint>
-    <link name="${prefix}gripper_grasp_point" />
-    <joint name="${prefix}${gripper_name}_gripper_tool0_joint" type="fixed">
+    <link name="${tf_prefix}gripper_grasp_point" />
+    <joint name="${tf_prefix}${gripper_name}_gripper_tool0_joint" type="fixed">
       <origin xyz="0 0 0.09139" rpy="0 0 0" />
-      <parent link="${prefix}${gripper_name}_rot_base_link" />
-      <child link="${prefix}gripper_grasp_point" />
+      <parent link="${tf_prefix}${gripper_name}_rot_base_link" />
+      <child link="${tf_prefix}gripper_grasp_point" />
     </joint>
   </xacro:macro>
 </robot>

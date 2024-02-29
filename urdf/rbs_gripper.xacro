@@ -5,7 +5,7 @@
   <xacro:arg name="hardware" default="gazebo"/>  
   <link name="world"/>
   
-  <xacro:rbs_gripper prefix="" gripper_name="rbs-gripper" parent="world" hardware="$(arg hardware)">
+  <xacro:rbs_gripper tf_prefix="" gripper_name="rbs-gripper" parent="world" hardware="$(arg hardware)">
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/> 
   </xacro:rbs_gripper>
 </robot>

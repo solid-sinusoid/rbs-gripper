@@ -2,9 +2,9 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:macro name="rbs_gripper_hardware"
-    params="prefix gripper_name hardware">
+    params="tf_prefix gripper_name hardware">
 
-    <ros2_control name="${prefix}${gripper_name}_${hardware}" type="system">
+    <ros2_control name="${tf_prefix}${gripper_name}_${hardware}" type="system">
       <!-- Plugins -->
       <hardware>
         <xacro:if value="${hardware=='isaac'}">
@@ -20,7 +20,7 @@
         </xacro:if>
       </hardware>
       <!-- Joint interfaces -->
-      <joint name="${prefix}${gripper_name}_rot_base_joint">
+      <joint name="${tf_prefix}${gripper_name}_rot_base_joint">
         <xacro:if value="${hardware=='gazebo'}">
           <state_interface name="position">
             <param name="initial_value">0.000</param>
@@ -35,7 +35,7 @@
         <state_interface name="velocity" />
         <state_interface name="effort" />
       </joint>
-      <joint name="${prefix}${gripper_name}_r_finger_joint">
+      <joint name="${tf_prefix}${gripper_name}_r_finger_joint">
         <!-- With Gazebo, we have mimic joints, so we only need this command interface
                 activated -->
         <xacro:if value="${hardware=='gazebo'}">
@@ -52,8 +52,8 @@
         <state_interface name="velocity" />
         <state_interface name="effort" />
       </joint>
-      <joint name="${prefix}${gripper_name}_l_finger_joint">
-        <param name="mimic">${prefix}${gripper_name}_r_finger_joint</param>
+      <joint name="${tf_prefix}${gripper_name}_l_finger_joint">
+        <param name="mimic">${tf_prefix}${gripper_name}_r_finger_joint</param>
         <param name="multiplier">1</param>
         <xacro:unless value="${hardware == 'gazebo'}">
           <command_interface name="position" />
