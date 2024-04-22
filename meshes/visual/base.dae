@@ -142,9 +142,9 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Grip_Base" name="Grip_Base" type="NODE">
+      <node id="base" name="base" type="NODE">
         <matrix sid="transform">-4.37114e-8 -1 0 0 1 -4.37114e-8 0 0 0 0 1 0 0 0 0 1</matrix>
-        <instance_geometry url="#Part__Feature297_002-mesh" name="Grip_Base">
+        <instance_geometry url="#Part__Feature297_002-mesh" name="base">
           <bind_material>
             <technique_common>
               <instance_material symbol="plastic-simple-black-bevel-material" target="#plastic-simple-black-bevel-material">

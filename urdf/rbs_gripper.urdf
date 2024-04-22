@@ -1,11 +1,8 @@
- <?xml version="1.0" encoding="utf-8"?>
-<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
-     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
-     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<?xml version="1.0"?>
 <robot
   name="rbs-gripper-description">
   <link
-    name="Grip_Base">
+    name="base">
     <inertial>
       <origin
         xyz="0.000364704367134063 0.0336387482840125 0.0593891203954369"
@@ -26,7 +23,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/visual/Grip_Base.dae" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/visual/base.dae" />
       </geometry>
       <material
         name="">
@@ -40,12 +37,12 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/collision/Grip_Base.stl" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/collision/base.stl" />
       </geometry>
     </collision>
   </link>
   <link
-    name="Grip_Rotator">
+    name="rotor">
     <inertial>
       <origin
         xyz="6.79110135283868E-11 -3.80956832067611E-10 0.00775394473595793"
@@ -66,7 +63,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/visual/Grip_Rotator.dae" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/visual/rotor.dae" />
       </geometry>
       <material
         name="">
@@ -80,7 +77,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/collision/Grip_Rotator.stl" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/collision/rotor.stl" />
       </geometry>
     </collision>
   </link>
@@ -91,9 +88,9 @@
       xyz="0 0 0.10861"
       rpy="0 0 0" />
     <parent
-      link="Grip_Base" />
+      link="base" />
     <child
-      link="Grip_Rotator" />
+      link="rotor" />
     <axis
       xyz="0 0 1" />
     <limit
@@ -103,7 +100,7 @@
       velocity="0" />
   </joint>
   <link
-    name="Gripper_1">
+    name="finger">
     <inertial>
       <origin
         xyz="0.00399878118534129 0.0187296413885176 -0.0777776233934166"
@@ -124,7 +121,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/visual/Gripper_1.dae" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/visual/finger.dae" />
       </geometry>
       <material
         name="">
@@ -138,7 +135,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/collision/Gripper_1.stl" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/collision/finger.stl" />
       </geometry>
     </collision>
   </link>
@@ -149,9 +146,9 @@
       xyz="0 0 0.1071"
       rpy="0 0 1.5708" />
     <parent
-      link="Grip_Rotator" />
+      link="rotor" />
     <child
-      link="Gripper_1" />
+      link="finger" />
     <axis
       xyz="-1 0 0" />
     <limit
@@ -161,7 +158,7 @@
       velocity="0" />
   </joint>
   <link
-    name="Gripper_2">
+    name="finger">
     <inertial>
       <origin
         xyz="0.0039988 -0.077778 -0.01873"
@@ -182,7 +179,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/visual/Gripper_2.dae" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/visual/finger.dae" />
       </geometry>
       <material
         name="">
@@ -196,7 +193,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rbs-gripper-description/meshes/collision/Gripper_2.stl" />
+          filename="/home/bill-finger/rbs_ws/install/rbs_gripper/share/rbs_gripper/meshes/collision/finger.stl" />
       </geometry>
     </collision>
   </link>
@@ -207,9 +204,9 @@
       xyz="0 0 0.1071"
       rpy="1.5708 0 -1.5708" />
     <parent
-      link="Grip_Rotator" />
+      link="rotor" />
     <child
-      link="Gripper_2" />
+      link="finger" />
     <axis
       xyz="-1 0 0" />
     <limit

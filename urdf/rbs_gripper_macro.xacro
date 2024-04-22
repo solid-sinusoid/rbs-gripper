@@ -21,7 +21,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/visual/Grip_Base.dae" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/visual/base.dae" />
         </geometry>
         <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
@@ -30,7 +30,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/collision/Grip_Base.stl" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/collision/base.stl" />
         </geometry>
       </collision>
     </link>
@@ -44,7 +44,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/visual/Grip_Rotator.dae" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/visual/rotor.dae" />
         </geometry>
         <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.250980392156863 0.250980392156863 0.250980392156863 1" />
@@ -53,7 +53,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/collision/Grip_Rotator.stl" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/collision/rotor.stl" />
         </geometry>
       </collision>
     </link>
@@ -63,7 +63,6 @@
       <child link="${tf_prefix}${gripper_name}_rot_base_link" />
       <axis xyz="0 0 1" />
       <limit lower="-3.14159" upper="3.14159" effort="78" velocity="0.52" />
-    <dynamics damping="0" friction="0"/>
     </joint>
     <link name="${tf_prefix}${gripper_name}_l_finger_link">
       <inertial>
@@ -75,7 +74,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/visual/Gripper_1.dae" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/visual/finger.dae" />
         </geometry>
         <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.752941176470588 0 0 1" />
@@ -84,7 +83,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/collision/Gripper_1.stl" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/collision/finger.stl" />
         </geometry>
       </collision>
     </link>
@@ -107,7 +106,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/visual/Gripper_2.dae" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/visual/finger.dae" />
         </geometry>
         <material name="${tf_prefix}${gripper_name}_material">
           <color rgba="0.75294 0 0 1" />
@@ -116,12 +115,12 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="file://$(find rbs_gripper)/meshes/collision/Gripper_2.stl" />
+          <mesh filename="file://$(find rbs_gripper)/meshes/collision/finger.stl" />
         </geometry>
       </collision>
     </link>
     <joint name="${tf_prefix}${gripper_name}_r_finger_joint" type="prismatic">
-      <origin xyz="0 0 0.1071" rpy="1.5708 0 -1.5708" />
+      <origin xyz="0 0 0.1071" rpy="0 0 -1.5708" />
       <parent link="${tf_prefix}${gripper_name}_rot_base_link" />
       <child link="${tf_prefix}${gripper_name}_r_finger_link" />
       <axis xyz="-1 0 0" />

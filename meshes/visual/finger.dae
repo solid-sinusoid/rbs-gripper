@@ -74,9 +74,9 @@
   </library_geometries>
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
-      <node id="Gripper_2" name="Gripper_2" type="NODE">
-        <matrix sid="transform">1 0 0 0 0 -4.37114e-8 1 0 0 -1 -4.37114e-8 0 0 0 0 1</matrix>
-        <instance_geometry url="#Grip_R-mesh" name="Gripper_2">
+      <node id="finger" name="finger" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Grip_R-mesh" name="finger">
           <bind_material>
             <technique_common>
               <instance_material symbol="plastic-simple-gray-bevel-material" target="#plastic-simple-gray-bevel-material"/>
