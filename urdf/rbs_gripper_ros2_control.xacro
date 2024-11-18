@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
+  <xacro:include filename="$(find rbs_gripper)/urdf/transmission_macro.xacro"/>
+
   <xacro:macro name="rbs_gripper_hardware"
     params="tf_prefix gripper_name hardware">
 
@@ -33,16 +35,16 @@
 
         <command_interface name="position" />
         <command_interface name="velocity"/>
-        <command_interface name="effort"/>
+        <!-- <command_interface name="acceleration"/> -->
         <state_interface name="velocity" />
-        <state_interface name="effort" />
+        <!-- <state_interface name="acceleration" /> -->
       </joint>
       <joint name="${tf_prefix}${gripper_name}_r_finger_joint">
         <!-- With Gazebo, we have mimic joints, so we only need this command interface
                 activated -->
         <xacro:if value="${hardware=='gazebo'}">
           <state_interface name="position">
-            <param name="initial_value">0.000</param>
+            <param name="initial_value">0.004</param>
           </state_interface>
         </xacro:if>
         <xacro:unless value="${hardware=='gazebo'}">
@@ -52,9 +54,9 @@
 
         <command_interface name="position" />
         <command_interface name="velocity"/>
-        <command_interface name="effort"/>
+        <!-- <command_interface name="acceleration"/> -->
         <state_interface name="velocity" />
-        <state_interface name="effort" />
+        <!-- <state_interface name="acceleration" /> -->
       </joint>
       <joint name="${tf_prefix}${gripper_name}_l_finger_joint">
         <param name="mimic">${tf_prefix}${gripper_name}_r_finger_joint</param>
@@ -62,14 +64,13 @@
         <xacro:unless value="${hardware == 'gazebo'}">
           <command_interface name="position" />
           <command_interface name="velocity"/>
-          <command_interface name="effort"/>
+          <!-- <command_interface name="acceleration"/> -->
           <state_interface name="position" />
           <state_interface name="velocity" />
-          <state_interface name="effort" />
+          <!-- <state_interface name="acceleration" /> -->
         </xacro:unless>
       </joint>
-
-
     </ros2_control>
+    <xacro:rbs_gripper_transmission joint_name="${tf_prefix}${gripper_name}_rot_base_joint" />
   </xacro:macro>
 </robot>

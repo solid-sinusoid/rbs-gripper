@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:include filename="$(find rbs_gripper)/urdf/rbs_gripper_ros2_control.xacro" />
+  <xacro:include filename="$(find rbs_gripper)/urdf/gazebos_macro.xacro"/>
   <xacro:macro name="rbs_gripper" params="tf_prefix gripper_name *origin parent hardware">
 
     <xacro:rbs_gripper_hardware tf_prefix="${tf_prefix}" gripper_name="${gripper_name}"
@@ -132,5 +133,10 @@
       <parent link="${tf_prefix}${gripper_name}_rot_base_link" />
       <child link="${tf_prefix}gripper_grasp_point" />
     </joint>
+
+    <!-- <xacro:rbs_griper_gazebo_stuff link_name="${tf_prefix}${gripper_name}_rot_base_link"/> -->
+    <!-- <xacro:rbs_griper_gazebo_stuff link_name="${tf_prefix}${gripper_name}_l_finger_link"/> -->
+    <!-- <xacro:rbs_griper_gazebo_stuff link_name="${tf_prefix}${gripper_name}_r_finger_link"/> -->
+
   </xacro:macro>
 </robot>

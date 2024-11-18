@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rbs_griper_gazebo_stuff" params="link_name">
+    <gazebo reference="${link_name}">
+      <self_collide>1</self_collide>
+      <!-- <soft_contact> -->
+      <!--   <dart> -->
+      <!--     <bone_attachment>100</bone_attachment> -->
+      <!--     <stiffness>100</stiffness> -->
+      <!--     <damping>10</damping> -->
+      <!--     <flesh_mass_fraction>0.050000000000000003</flesh_mass_fraction> -->
+      <!--   </dart> -->
+      <!-- </soft_contact> -->
+    </gazebo>
+  </xacro:macro>
+</robot>

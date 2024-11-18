@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="rbs_gripper_transmission"
+    params="joint_name">
+      <transmission name="${joint_name}_transmission">
+        <type>transmission_interface/SimpleTransmission</type>
+        <joint name="${joint_name}">
+          <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        </joint>
+        <actuator name="${joint_name}_actuator">
+          <mechanicalReduction>1</mechanicalReduction>
+        </actuator>
+      </transmission>
+
+    </xacro:macro>
+</robot>
