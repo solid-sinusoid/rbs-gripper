@@ -15,7 +15,7 @@
           <param name="joint_states_topic">/isaac_joint_states</param>
         </xacro:if>
         <xacro:if value="${hardware=='gazebo'}">
-          <plugin>ign_ros2_control/IgnitionSystem</plugin>
+          <plugin>gz_ros2_control/GazeboSimSystem</plugin>
         </xacro:if>
         <xacro:if value="${hardware=='fake'}">
           <plugin>mock_components/GenericSystem</plugin>

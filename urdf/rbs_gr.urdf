@@ -8,7 +8,7 @@
   <ros2_control name="rbs-gripper_gazebo" type="system">
     <!-- Plugins -->
     <hardware>
-      <plugin>ign_ros2_control/IgnitionSystem</plugin>
+      <plugin>gz_ros2_control/GazeboSimSystem</plugin>
     </hardware>
     <!-- Joint interfaces -->
     <joint name="rbs-gripper_rot_base_joint">
